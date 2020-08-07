@@ -9,22 +9,23 @@ class Customer {
 		this.name = name;
 		this.bal = bal;
 		this.pin = pin;
+		console.log(name, bal, pin);
 	}
 
-	get getName() {
+	/* get getName() {
 		return name;
-	}
+	} */
 
-	set setName(name) {
+	/* set setName(name) {
 		this.name = name;
-	}
+	} */
 
 	get getBal() {
-		return initBal;
+		return bal;
 	}
 
-	set setBal(initBal) {
-		this.initBal = initBal;
+	set setBal(bal) {
+		this.bal = bal;
 	}
 
 	get getPin() {
@@ -48,4 +49,15 @@ customer.balance;
 customer.acc; */
 
 //module.exports = customer;
-module.exports.Customer = constructor();
+module.exports.Customer ={
+	gn: function getName() {
+		return name;
+	},
+	sn: function setName(name){
+		this.name = name;
+	}
+
+}
+
+//this no work
+//export default Customer;

@@ -5,6 +5,8 @@
 const av = require('./application_views');
 const cust = require('./customer_account');
 const readline = require('readline');
+const prompt = require('prompt-sync')();
+const parseInt = require('parse-int');
 
 const rl = readline.createInterface({
 	input: process.stdin,
@@ -12,18 +14,35 @@ const rl = readline.createInterface({
 });
 
 //creates default user and appends to the array
+//var user = new cust.Customer.constructor();
+
 var user = new cust.Customer.constructor();
 user.name = "jeeves";
 user.bal = 0;
 user.pin = 1234;
 
+/* var name = 'jeeves';
+var pin = 1234;
+var bal = 20; */
+
+var user1 = new cust.Customer.constructor();
+user1.name = "Burian-kun";
+user1.bal = 420;
+user1.pin = 1337;
+
+var accList = [];
+accList.push(user);
+accList.push(user1);
+
+//accList.push(new cust.Customer.constructor(name, bal, pin));
+
 var it = 0;
 
 var isLogged = false;
 var inCreation = false;
+var currentAcc = new cust.Customer.constructor();
 
-var accList = [];
-accList.push(user);
+//accList.push(user);
 var currentAcc;
 
 const mainOpts = {
@@ -44,72 +63,62 @@ const loginOpts = {
 var introMsg = '';
 var loginMsg = '';
 
-//for things to run, it must be placed outside of the class
+while (true) {
 
-//this still dont work properly out is [function: msgIntro]
-introMsg = av.funcs.mi;
-console.log(introMsg);
+	console.log(accList);
 
-console.log(accList);
-console.log('no1')
+	//prompt is used to ask the question, then it stores in a variable
+	const mainOpts = prompt(av.funcs.mi());
 
-if (it === 0) {
-
-	//av.funcs.mi;
-
-	//the first param should pull and print question to ask user, while storing response in mainOpts
-	//may need to parse or convert mainOpts input
-	rl.question(av.funcs.mi, mainOpts);
-
-	if (mainOpts === 1) {
+	//login
+	if (mainOpts == 1) {
 
 		//login
 
-		let userName = '';
-		let userPin = '';
-
-		rl.question(av.funcs.mn, userName);
-		rl.question(av.funcs.mp, userPin);
+		let userName = prompt(av.funcs.mn());
+		let userPin = Number.parseInt(prompt(av.funcs.mp()), 10);
 
 		accList.forEach(Element => {
-			if (userName === Element.getName && userPin === Element.getPin) {
-				av.funcs.ls;
+			console.log("list of users: " + Element.name);
+			console.log("list of users: " + Element.pin);
+			console.log("list of users: " + Element.bal);
+			//console.log("list of users: " + Element.cust.Customer.getName());
+		})
+
+		accList.forEach(Element => {
+
+			if (userName == Element.name && userPin == Element.pin) {
+				av.funcs.ls();
 				isLogged = true;
+				//the Element is the whole record/object in the list
+				currentAcc = Element;
+				mainOpts = 2;
 				//redirect to usermenu av.func.tm
 			}
-			else if (userName != cust.Customer.getName && userPin != cust.Customer.getPin) {
+			else {
+				//this should prob go in the outside of the loop
 				console.log('Username or pin does not exist')
 			}
 
 		});
+	//account creation header
+	} else if (mainOpts == 2) {
 
-	}
-	else if (mainOpts === 2) {
-
-		let userName = '';
-		let userBal = 0;
-		let userPin = '';
-		let userVerPin = '';
-
-		//account creation header
-		av.funcs.ac;
-
-		//prompts user for info and store in variables
-		rl.question(av.funcs.mn, userName);
-		rl.question(av.funcs.mid, userBal);
-		rl.question(av.funcs.mp, userPin);
-		rl.question(av.funcs.mpv, userVerPin);
+		let userName = prompt(av.funcs.mn());
+		let userBal = prompt(av.funcs.mid())
+		let userPin = prompt(av.funcs.mp());
+		let userVerPin = prompt(av.funcs.mpv());
 
 		if (userPin === userVerPin) {
 
 			//loop through customers to find if userName = a cust name
 
 			accList.forEach(Element => {
-				if (userName != Element.getName) {
+				if (userName != Element.name) {
 					av.funcs.acs;
 					//redirect to user menu
 				}
-				else{
+				else {
 					console.log('Username exists, please use different name...')
 					//redirect back to account creation
 				}
@@ -119,8 +128,8 @@ if (it === 0) {
 
 	}
 
-	console.log(accList);
-	console.log('no2')
+	//insertcode for the transaction menu here
+//tm
 }
 
 //this contains methods/info on operations of ATM (like deposit and withdraw)
