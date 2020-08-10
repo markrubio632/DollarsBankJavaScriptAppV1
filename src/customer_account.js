@@ -1,24 +1,17 @@
-/**
- * http://usejsdoc.org/
- */
-
- //customer centric functions and objects
 
 class Customer {
 	constructor(name, bal, pin) {
 		this.name = name;
 		this.bal = bal;
 		this.pin = pin;
-		console.log(name, bal, pin);
 	}
 
-	/* get getName() {
+	get getName() {
 		return name;
-	} */
-
-	/* set setName(name) {
+	}
+	set setName(name) {
 		this.name = name;
-	} */
+	}
 
 	get getBal() {
 		return bal;
@@ -35,29 +28,23 @@ class Customer {
 	set setPin(pin) {
 		this.pin = pin;
 	}
-
 }
 
-/*  var customer = new Customer();
+//when calling in other file, use this format "nickname()"
+//example of deposit: de()
 
- customer.id;
-customer.name;
-customer.address;
-customer.phone;
-customer.password;
-customer.balance;
-customer.acc; */
-
-//module.exports = customer;
-module.exports.Customer ={
-	gn: function getName() {
-		return name;
+//export multiple modules to be used elsewhere - these are used in dollars_bank_atm.js
+module.exports.Customer = {
+	de: function deposit(balance, amount) {
+		balance = balance + amount;
+		return balance;
 	},
-	sn: function setName(name){
-		this.name = name;
+
+	wi: function withdraw(balance, amount) {
+		balance = balance - amount;
+		return balance;
 	}
 
 }
 
-//this no work
-//export default Customer;
+

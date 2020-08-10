@@ -1,15 +1,19 @@
 
-//this is the viewer
+//this is the viewer and general read statements users would see
+
+//when calling in other file, use this format "nickname()"
+//example of msgIntro: mi()
 
 const atm = "DOLLARSBANK ATM";
 
+//export multiple modules to be used elsewhere - these are used in dollars_bank_atm.js
 module.exports.funcs = {
 
 	mi: function msgIntro() {
 		console.log(atm + " Welcomes You!!\n\nEnter a valid choice (1 > Login 2 > Open New Account")
 	},
 
-	mn: function msgName(){
+	mn: function msgName() {
 		console.log('Please enter your Name: ')
 	},
 
@@ -32,7 +36,8 @@ module.exports.funcs = {
 		console.log('Enter 3: Update PIN')
 		console.log('Enter 4: Withdraw Amount')
 		console.log('Enter 5: Deposit Amount')
-		console.log('\nChoice should be in 1-5')
+		console.log('Enter 6: Exit')
+		console.log('\nChoice should be in 1-6')
 	},
 
 	bc: function balaceCheck() {
@@ -49,7 +54,7 @@ module.exports.funcs = {
 
 	df: function depoFunds() {
 		console.log('Enter amount to deposit: ')
-		console.log('\n\nAccepted amounts are $20 bills & Personal checks of any amount')
+		console.log('\nAccepted amounts are $20 bills & Personal checks of any amount')
 		console.log('deposit funds: format: 00.00: ')
 	},
 
@@ -62,54 +67,14 @@ module.exports.funcs = {
 		console.log('----- Create Account -----')
 	},
 
-	acs: function accSucc(){
+	acs: function accSucc() {
 		console.log('-----Account Creation Successful! -----')
 	},
 
-	ls: function loginSucc(){
+	ls: function loginSucc() {
 		console.log('Login Successful!')
-	}
-}
-
-
-/* function greetings() {
-	console.log(atm + " Welcomes You!!");
-	var optChosen = rl.question("Enter a valid choice (1 > Transaction 2> Open New Account)");
-	return optChosen;
-}
-
-function transMenu() {
-	console.log("Transaction Menu:")
-	console.log('Enter 1: Account Balance Check')
-	console.log('Enter 2: Print Transactions')
-	console.log('Enter 3: Update PIN')
-	console.log('Enter 4: Withdraw Amount')
-	console.log('Enter 5: Deposit Amount')
-
-} */
-//module.exports = greetings;
-/* module.exports = {
-	g: greetings(),
-	t: transMenu(),
-}; */
-
-/* module.exports = {
-	g: function greetings() {
-		console.log(atm + " Welcomes You!!");
-		var optChosen = rl.question("Enter a valid choice (1 > Transaction 2> Open New Account)");
-		return optChosen;
 	},
-
-	t: function transMenu() {
-		console.log("Transaction Menu:")
-		console.log('Enter 1: Account Balance Check')
-		console.log('Enter 2: Print Transactions')
-		console.log('Enter 3: Update PIN')
-		console.log('Enter 4: Withdraw Amount')
-		console.log('Enter 5: Deposit Amount')
-
+	ex: function exitProgram() {
+		console.log("Exiting... Thank You and Come Again!")
 	}
-}; */
-
-
-
+}
